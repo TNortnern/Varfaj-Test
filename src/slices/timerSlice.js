@@ -32,10 +32,18 @@ const timerSlice = createSlice({
   },
 });
 
+export const handleMinutes = minutes => (dispatch, getState) => {
+  console.log('getState()', getState())
+  // setTimeout(() => {
+  //   dispatch(incrementByAmount(amount));
+  // }, 1000);
+};
+
+
 export const { setTime, setPaused, setPlaying, setSpeed } = timerSlice.actions;
-export const time = state => state.time;
-export const isPaused = state => state.isPaused;
-export const isPlaying = state => state.isPlaying;
-export const speed = state => state.speed;
+export const getTime = state => state.timer.time;
+export const getIsPaused = state => state.timer.isPaused;
+export const getIsPlaying = state => state.timer.isPlaying;
+export const getSpeed = state => state.timer.speed;
 
 export default timerSlice.reducer;

@@ -3,7 +3,7 @@ import './tailwind.css';
 import "./App.css";
 import TimerForm from "./components/TimerForm";
 import Timer from "./components/Timer";
-import Controls from "./components/Controls";
+import SpeedControls from "./components/SpeedControls";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <h1 className="text-3xl font-bold mb-4">Welcome to the countdown timer.</h1>
         <TimerForm />
         <Timer />
-        <Controls />
+        <SpeedControls />
       </div>
     </div>
   );
