@@ -11,16 +11,16 @@ const TimerForm = () => {
         e.preventDefault();
         dispatch(setTime(5))
       }}
-      className="flex items-center"
+      className="flex items-center space-x-4"
     >
       <input
         value={minutes}
         onChange={({target}) => setMinutes(target.value)}
         placeholder="Enter the time"
-        className="input mr2 text-size"
+        className="input"
         type="text"
       />
-      <button type="submit" className="btn primary text-size">
+      <button type="submit" className="btn-primary">
         Start counting
       </button>
     </form>

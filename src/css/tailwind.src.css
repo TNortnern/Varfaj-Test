@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+    @apply px-5 py-2 rounded-md cursor-pointer duration-150;
+}
+
+.btn-primary {
+    @apply btn bg-primary text-white;
+}
+
+.input {
+    @apply px-3 py-2 border border-black duration-150;
+}
+.input:hover {
+    @apply bg-gray-100;
+}
