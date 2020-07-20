@@ -6,8 +6,16 @@
     @apply px-5 py-2 rounded-md cursor-pointer duration-150;
 }
 
+.btn:hover {
+  @apply opacity-75;
+}
+
 .btn-primary {
     @apply btn bg-primary text-white;
+}
+
+.btn-primary:hover {
+  @apply opacity-75;
 }
 
 .input {
@@ -15,4 +23,14 @@
 }
 .input:hover {
     @apply bg-gray-100;
+}
+
+.blink-text {
+  animation: blinker .75s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }

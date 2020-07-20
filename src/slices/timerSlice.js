@@ -6,11 +6,13 @@ const timerSlice = createSlice({
     time: 0,
     // to retain the initial value on reset button click
     initialTime: 0,
-    isPaused: true,
     isPlaying: false,
     isHalfWay: false,
     isFinished: false,
-    speed: 1,
+    // isModifying is the indicator to stop buttons from rerendering when resetting timer or changing speed
+    // in order to change things within the interval, stopping the timer is required and some elements depend on playing to be true
+    isModifying: false,
+    speed: 1000,
   },
   reducers: {
     setTime: (state, { payload }) => {
@@ -25,12 +27,8 @@ const timerSlice = createSlice({
     setIsFinished: (state, { payload }) => {
       state.isFinished = payload
     },
-    setPaused: (state, { payload }) => {
-      if (payload) {
-        state.isPaused = payload;
-      } else {
-        state.isPaused = !state.isPaused;
-      }
+    setIsModifying: (state, { payload }) => {
+      state.isModifying = payload;
     },
     setPlaying: (state, { payload }) => {
       if (payload) {
@@ -45,21 +43,14 @@ const timerSlice = createSlice({
   },
 });
 
-export const handleMinutes = minutes => (dispatch, getState) => {
-  console.log('getState()', getState())
-  // setTimeout(() => {
-  //   dispatch(incrementByAmount(amount));
-  // }, 1000);
-};
 
-
-export const { setTime, setPaused, setPlaying, setSpeed, setInitialTime, setIsHalfWay, setIsFinished } = timerSlice.actions;
+export const { setTime, setPlaying, setSpeed, setInitialTime, setIsHalfWay, setIsFinished, setIsModifying } = timerSlice.actions;
 export const getTime = state => state.timer.time;
 export const getInitialTime = state => state.timer.initialTime;
 export const getIsHalfWay = state => state.timer.isHalfWay;
 export const getIsFinished = state => state.timer.isFinished;
-export const getIsPaused = state => state.timer.isPaused;
 export const getIsPlaying = state => state.timer.isPlaying;
 export const getSpeed = state => state.timer.speed;
+export const getIsModifying = state => state.timer.isModifying;
 
 export default timerSlice.reducer;

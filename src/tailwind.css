@@ -14374,6 +14374,10 @@ video {
   transition-duration: 150ms;
 }
 
+.btn:hover {
+  opacity: 0.75;
+}
+
 .btn-primary {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -14388,6 +14392,10 @@ video {
   --text-opacity: 1;
   color: #fff;
   color: rgba(255, 255, 255, var(--text-opacity));
+}
+
+.btn-primary:hover {
+  opacity: 0.75;
 }
 
 .input {
@@ -14406,6 +14414,16 @@ video {
   --bg-opacity: 1;
   background-color: #f7fafc;
   background-color: rgba(247, 250, 252, var(--bg-opacity));
+}
+
+.blink-text {
+  animation: blinker .75s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 @media (min-width: 640px) {

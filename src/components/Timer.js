@@ -10,8 +10,12 @@ import {
   getInitialTime,
   setIsFinished,
   getIsFinished,
+  setIsModifying,
+  getIsModifying,
+  getSpeed,
 } from "../slices/timerSlice";
 import TimerControls from "./TimerControls";
+import Message from "./Message";
 
 const Timer = () => {
   const dispatch = useDispatch();
@@ -21,11 +25,17 @@ const Timer = () => {
   const initialTime = useSelector(getInitialTime);
   const isHalfWay = useSelector(getIsHalfWay);
   const isFinished = useSelector(getIsFinished);
+  const isModifying = useSelector(getIsModifying);
+  const speed = useSelector(getSpeed);
   const handleAction = () => {
     dispatch(setPlaying(!isPlaying));
   };
-  const below20 = () => {
-    if (time < 20 && isPlaying) return "text-red-600";
+  const belowHandlers = () => {
+    let classes;
+    const isBelow20 = time < 20 ? 'text-red-600' : '';
+    const isBelow11 = time < 11 ? 'blink-text' : '';
+    classes = `${isBelow11} ${isBelow20}`
+    if (isPlaying) return classes;
   };
   useEffect(() => {
     let initialHalfTime = time / 2;
@@ -40,13 +50,14 @@ const Timer = () => {
         }
         if (time !== -1) dispatch(setTime(time--));
         if (time === initialHalfTime) dispatch(setIsHalfWay(true));
+        // when counter has reached 0
         if (time < 0) {
           clearInterval(countInterval);
           handleAction();
           dispatch(setIsHalfWay(false));
           dispatch(setIsFinished(true));
         }
-      }, 250);
+      }, speed);
     } else {
       clearInterval(countInterval);
     }
@@ -73,35 +84,9 @@ const Timer = () => {
   }
   return (
     <div>
-      {isHalfWay || isFinished ? (
-        <>
-          {isHalfWay ? (
-            <h1 className="text-green-400 text-center mt-4 bg-white shadow-lg rounded-md py-4 text-xl">
-              More than halfway there!
-              <span
-                onClick={closeMessage}
-                className="float-right mr-8 text-black cursor-pointer hover: opacity-75"
-              >
-                x
-              </span>
-            </h1>
-          ) : (
-            <h1 className="text-purple-500 text-center mt-4 bg-white shadow-lg rounded-md py-4 text-xl">
-              Time's up!
-              <span
-                onClick={closeMessage}
-                className="float-right mr-8 text-black cursor-pointer hover: opacity-75"
-              >
-                x
-              </span>
-            </h1>
-          )}
-        </>
-      ) : (
-        ""
-      )}
+     <Message isFinished={isFinished} isHalfWay={isHalfWay} closeMessage={closeMessage} />
       <h1
-        className={`text-5xl font-bold text-center my-2 text-timer-text ${below20()}`}
+        className={`text-5xl font-bold text-center my-2 text-timer-text ${belowHandlers()}`}
       >
         {handleMinutes()}:{handleSeconds()}
       </h1>
@@ -111,8 +96,10 @@ const Timer = () => {
         setPlaying={setPlaying}
         setTime={setTime}
         setIsHalfWay={setIsHalfWay}
+        isFinished={isFinished}
         setIsFinished={setIsFinished}
         initialTime={initialTime}
+        isModifying={isModifying}
         handleAction={handleAction}
       />
     </div>

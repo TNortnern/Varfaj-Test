@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { getIsFinished } from "../slices/timerSlice";
 
 const TimerControls = ({
   isPlaying,
@@ -9,7 +10,9 @@ const TimerControls = ({
   handleAction,
   time,
   setIsHalfWay,
+  isFinished,
   setIsFinished,
+  isModifying,
 }) => {
   const dispatch = useDispatch();
   return (
@@ -23,38 +26,40 @@ const TimerControls = ({
           time === 0 ? "opacity-50 pointer-events-none" : ""
         }`}
       >
-        {isPlaying ? "Pause" : "Play"}
+        {isPlaying || isModifying ? "Pause" : "Play"}
       </button>
-      {isPlaying ? (
-        <>
-          <button
-            onClick={() => {
-              dispatch(setIsFinished(false));
-              dispatch(setIsHalfWay(false));
-              if (isPlaying) {
-                dispatch(setPlaying(false));
-              }
-              dispatch(setTime(initialTime));
-              setTimeout(() => {
-                dispatch(setPlaying(true));
-              }, 1);
-            }}
-            className="btn bg-blue-500 text-white block ml-3"
-          >
-            Reset
-          </button>
-          <button
-            onClick={() => {
-              dispatch(setIsFinished(false));
-              dispatch(setIsHalfWay(false));
+      {isPlaying || isModifying || isFinished ? (
+        <button
+          onClick={() => {
+            dispatch(setIsFinished(false));
+            dispatch(setIsHalfWay(false));
+            if (isPlaying) {
               dispatch(setPlaying(false));
-              dispatch(setTime(initialTime));
-            }}
-            className="btn bg-red-500 text-white block ml-3"
-          >
-            Stop
-          </button>
-        </>
+            }
+            dispatch(setTime(initialTime));
+            setTimeout(() => {
+              dispatch(setPlaying(true));
+            }, 1);
+          }}
+          className="btn bg-blue-500 text-white block ml-3"
+        >
+          Reset
+        </button>
+      ) : (
+        ""
+      )}
+      {isPlaying || isModifying ? (
+        <button
+          onClick={() => {
+            dispatch(setIsFinished(false));
+            dispatch(setIsHalfWay(false));
+            dispatch(setPlaying(false));
+            dispatch(setTime(initialTime));
+          }}
+          className="btn bg-red-500 text-white block ml-3"
+        >
+          Stop
+        </button>
       ) : (
         ""
       )}
