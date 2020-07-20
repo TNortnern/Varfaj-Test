@@ -1,36 +1,47 @@
 import React, { useState } from "react";
-import { setTime, getIsPlaying, setInitialTime, setIsHalfWay } from '../slices/timerSlice';
+import {
+  setTime,
+  getIsPlaying,
+  setInitialTime,
+  setIsHalfWay,
+  setIsFinished,
+} from "../slices/timerSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const TimerForm = () => {
   const [number, setNumber] = useState("");
   const dispatch = useDispatch();
-    const isPlaying = useSelector(getIsPlaying);
-
+  const isPlaying = useSelector(getIsPlaying);
   return (
     <form
       onSubmit={(e) => {
-        if(number < 0 || !number) {
+        if (number < 0 || !number) {
           // small validation
-          alert('Time can only be positive.')
+          alert("Time can only be positive.");
         }
         e.preventDefault();
-        const resolveNumber = Number(number * 60)
+        const resolveNumber = Number(number * 60);
+        dispatch(setIsFinished(false));
         dispatch(setIsHalfWay(false));
-        dispatch(setTime(resolveNumber))
-        dispatch(setInitialTime(resolveNumber))
+        dispatch(setTime(resolveNumber));
+        dispatch(setInitialTime(resolveNumber));
       }}
       className="flex items-center space-x-4"
     >
       <input
         value={number}
-        onChange={({target}) => setNumber(target.value)}
+        onChange={({ target }) => setNumber(target.value)}
         placeholder="Enter minutes"
         className="input w-4/6"
         type="number"
         min={0}
       />
-      <button type="submit" className={`btn-primary ${isPlaying ? 'opacity-50 pointer-events-none' : ''}`}>
+      <button
+        type="submit"
+        className={`btn-primary ${
+          isPlaying ? "opacity-50 pointer-events-none" : ""
+        }`}
+      >
         Set time
       </button>
     </form>

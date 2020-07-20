@@ -9,12 +9,16 @@ const TimerControls = ({
   handleAction,
   time,
   setIsHalfWay,
+  setIsFinished,
 }) => {
   const dispatch = useDispatch();
   return (
     <div className="flex justify-center">
       <button
-        onClick={handleAction}
+        onClick={() => {
+          handleAction();
+          dispatch(setIsFinished(false));
+        }}
         className={`btn bg-black text-white block ml-3 ${
           time === 0 ? "opacity-50 pointer-events-none" : ""
         }`}
@@ -25,6 +29,7 @@ const TimerControls = ({
         <>
           <button
             onClick={() => {
+              dispatch(setIsFinished(false));
               dispatch(setIsHalfWay(false));
               if (isPlaying) {
                 dispatch(setPlaying(false));
@@ -40,6 +45,7 @@ const TimerControls = ({
           </button>
           <button
             onClick={() => {
+              dispatch(setIsFinished(false));
               dispatch(setIsHalfWay(false));
               dispatch(setPlaying(false));
               dispatch(setTime(initialTime));

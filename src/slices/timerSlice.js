@@ -9,6 +9,7 @@ const timerSlice = createSlice({
     isPaused: true,
     isPlaying: false,
     isHalfWay: false,
+    isFinished: false,
     speed: 1,
   },
   reducers: {
@@ -20,6 +21,9 @@ const timerSlice = createSlice({
     },
     setIsHalfWay: (state, { payload }) => {
       state.isHalfWay = payload;
+    },
+    setIsFinished: (state, { payload }) => {
+      state.isFinished = payload
     },
     setPaused: (state, { payload }) => {
       if (payload) {
@@ -49,10 +53,11 @@ export const handleMinutes = minutes => (dispatch, getState) => {
 };
 
 
-export const { setTime, setPaused, setPlaying, setSpeed, setInitialTime, setIsHalfWay } = timerSlice.actions;
+export const { setTime, setPaused, setPlaying, setSpeed, setInitialTime, setIsHalfWay, setIsFinished } = timerSlice.actions;
 export const getTime = state => state.timer.time;
 export const getInitialTime = state => state.timer.initialTime;
 export const getIsHalfWay = state => state.timer.isHalfWay;
+export const getIsFinished = state => state.timer.isFinished;
 export const getIsPaused = state => state.timer.isPaused;
 export const getIsPlaying = state => state.timer.isPlaying;
 export const getSpeed = state => state.timer.speed;
