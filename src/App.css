@@ -1,39 +1,87 @@
-.App {
-  text-align: center;
+:root {
+ --purple: rgb(112, 76, 182);
+ --default-timing: .25s;
+ --m1: .75em;
+ --m2: 1em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
+.app {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+.block {
+  display: block;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px)
-  }
-  100% {
-    transform: translateY(0px)
-  }
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.input {
+  padding: .6em .9em;
+  appearance: none;
+  transition: var(--default-timing);
+}
+.input:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.btn {
+  padding: .7em 1.45em;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: black;
+  color:white;
+  transition: var(--default-timing);
+  font-weight: bold;
+  outline: none;
+  border: none;
+}
+.btn.primary {
+  background-color: var(--purple);
+}
+.btn:hover {
+  opacity: .8;
+}
+
+.mr1 {
+  margin-right: var(--m1);
+}
+.mr2 {
+  margin-right: var(--m2);
+}
+.ml1 {
+  margin-left: var(--m1);
+}
+.ml2 {
+  margin-left: var(--m2);
+}
+.mt1 {
+  margin-top: var(--m1);
+}
+.mt2 {
+  margin-top: var(--m2);
+}
+.mb1 {
+  margin-bottom: var(--m1);
+}
+.mb2 {
+  margin-bottom: var(--m2);
+}
+
+.text-size {
+  font-size: 17px;
+}
+
+.counter-text {
+  font-size: 10em;
+  margin: 0;
 }
