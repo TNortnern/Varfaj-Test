@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getIsPlaying,
   setPlaying,
   setTime,
+  setIsHalfWay,
+  getIsHalfWay,
+  getIsPlaying,
   getTime,
+  getInitialTime
 } from "../slices/timerSlice";
 import TimerControls from "./TimerControls";
 
 const Timer = () => {
   const dispatch = useDispatch();
   const [half, setHalf] = useState(null);
-  const [initialTime, setInitialTime] = useState(0);
   let time = useSelector(getTime);
   const isPlaying = useSelector(getIsPlaying);
+  const initialTime = useSelector(getInitialTime);
+  const isHalfWay = useSelector(getIsHalfWay);
   const handleAction = () => {
     dispatch(setPlaying(!isPlaying));
   };
@@ -23,7 +27,6 @@ const Timer = () => {
   //   }
   // }, [input])
   useEffect(() => {
-    if (!initialTime) setInitialTime(time);
     let initialHalfTime = time / 2;
     if (time !== 0 && !half) {
       setHalf(time / 2);
@@ -36,7 +39,7 @@ const Timer = () => {
         }
         console.log(time);
         if (time !== -1) dispatch(setTime(time--));
-        if (time === initialHalfTime) console.log("its halftime!!", time);
+        if (time === initialHalfTime) dispatch(setIsHalfWay(true));
         if (time < 0) {
           clearInterval(countInterval);
           handleAction();
@@ -64,13 +67,22 @@ const Timer = () => {
   };
   return (
     <div>
+      {isHalfWay && isPlaying ? (
+        <h1 className="text-green-400 text-center mt-4 bg-white shadow-lg rounded-md py-4 text-md">
+          More than halfway there! &#x2713;
+        </h1>
+      ) : (
+        ""
+      )}
       <h1 className="text-5xl font-bold text-center my-2 text-timer-text">
         {handleMinutes()}:{handleSeconds()}
       </h1>
       <TimerControls
+        time={time}
         isPlaying={isPlaying}
         setPlaying={setPlaying}
         setTime={setTime}
+        setIsHalfWay={setIsHalfWay}
         initialTime={initialTime}
         handleAction={handleAction}
       />
