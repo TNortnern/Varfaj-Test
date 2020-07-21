@@ -6,6 +6,7 @@ const timerSlice = createSlice({
     time: 0,
     // to retain the initial value on reset button click
     initialTime: 0,
+    half: 0,
     isPlaying: false,
     isHalfWay: false,
     isFinished: false,
@@ -23,6 +24,9 @@ const timerSlice = createSlice({
     },
     setIsHalfWay: (state, { payload }) => {
       state.isHalfWay = payload;
+    },
+    setHalf: (state, { payload }) => {
+      state.half = payload;
     },
     setIsFinished: (state, { payload }) => {
       state.isFinished = payload
@@ -44,10 +48,11 @@ const timerSlice = createSlice({
 });
 
 
-export const { setTime, setPlaying, setSpeed, setInitialTime, setIsHalfWay, setIsFinished, setIsModifying } = timerSlice.actions;
+export const { setTime, setPlaying, setSpeed, setInitialTime, setIsHalfWay, setIsFinished, setIsModifying, setHalf } = timerSlice.actions;
 export const getTime = state => state.timer.time;
 export const getInitialTime = state => state.timer.initialTime;
 export const getIsHalfWay = state => state.timer.isHalfWay;
+export const getHalf = state => state.timer.half;
 export const getIsFinished = state => state.timer.isFinished;
 export const getIsPlaying = state => state.timer.isPlaying;
 export const getSpeed = state => state.timer.speed;

@@ -13,6 +13,7 @@ import {
   getIsFinished,
   getIsModifying,
   getSpeed,
+  getHalf,
 } from "../slices/timerSlice";
 import TimerControls from "./TimerControls";
 import Message from "./Message";
@@ -20,11 +21,11 @@ import TimeItem from "./TimeItem";
 
 const Timer = () => {
   const dispatch = useDispatch();
-  const [half, setHalf] = useState(null);
   let time = useSelector(getTime);
   const isPlaying = useSelector(getIsPlaying);
   const initialTime = useSelector(getInitialTime);
   const isHalfWay = useSelector(getIsHalfWay);
+  const half = useSelector(getHalf);
   const isFinished = useSelector(getIsFinished);
   const isModifying = useSelector(getIsModifying);
   const speed = useSelector(getSpeed);
@@ -39,18 +40,12 @@ const Timer = () => {
     if (isPlaying) return classes;
   };
   useEffect(() => {
-    let initialHalfTime = time / 2;
-    if (time !== 0 && !half) {
-      setHalf(time / 2);
-    }
     let countInterval;
     if (isPlaying && time > 0) {
       countInterval = setInterval(() => {
-        if (half) {
-          initialHalfTime = half;
-        }
         if (time !== -1) dispatch(setTime(time--));
-        if (time === (initialHalfTime - 1)) dispatch(setIsHalfWay(true));
+        // probably could use local state to handle if time is equal to the halfway point
+        if (time === half - 1) dispatch(setIsHalfWay(true));
         // when counter has reached 0
         if (time < 0) {
           clearInterval(countInterval);

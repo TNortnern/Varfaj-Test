@@ -5,6 +5,7 @@ import {
   setInitialTime,
   setIsHalfWay,
   setIsFinished,
+  setHalf,
 } from "../slices/timerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "./Toast";
@@ -31,6 +32,7 @@ const TimerForm = () => {
           dispatch(setIsHalfWay(false));
           dispatch(setTime(resolveNumber));
           dispatch(setInitialTime(resolveNumber));
+          dispatch(setHalf(resolveNumber / 2));
         }}
         className="flex flex-wrap items-center sm:space-x-4"
       >
