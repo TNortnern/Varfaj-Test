@@ -86,7 +86,7 @@ const Timer = () => {
         closeMessage={closeMessage}
       />
       <div
-        className={`text-5xl font-bold mt-2 mb-5 text-timer-text ${belowHandlers()} flex justify-center`}
+        className={`font-bold mt-2 mb-5 text-timer-text ${belowHandlers()} flex justify-center`}
       >
         <TimeItem time="Minutes" value={handleMinutes()} />
         :
