@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const Message = ({isHalfWay, isFinished, closeMessage}) => {
     return (
@@ -33,5 +34,11 @@ const Message = ({isHalfWay, isFinished, closeMessage}) => {
       </div>
     );
 }
+
+Message.propTypes = {
+  isHalfWay: PropTypes.bool.isRequired,
+  isFinished: PropTypes.bool.isRequired,
+  closeMessage: PropTypes.func.isRequired,
+};
 
 export default Message;

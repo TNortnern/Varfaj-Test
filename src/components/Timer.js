@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -10,7 +11,6 @@ import {
   getInitialTime,
   setIsFinished,
   getIsFinished,
-  setIsModifying,
   getIsModifying,
   getSpeed,
 } from "../slices/timerSlice";

@@ -33,7 +33,9 @@ const TimerForm = () => {
         value={number}
         onChange={({ target }) => setNumber(target.value)}
         placeholder="Enter minutes"
-        className="input w-11/12 mx-auto sm:mx-0 mb-2 sm:mb-0 sm:w-4/6"
+        className={`input w-11/12 mx-auto sm:mx-0 mb-2 sm:mb-0 sm:w-4/6 ${
+          isPlaying ? "opacity-50 pointer-events-none" : ""
+        } `}
         type="number"
         min={0}
       />

@@ -1,6 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
-import { getIsFinished } from "../slices/timerSlice";
 
 const TimerControls = ({
   isPlaying,
@@ -65,6 +65,20 @@ const TimerControls = ({
       )}
     </div>
   );
+};
+
+
+TimerControls.propTypes = {
+  isPlaying: PropTypes.bool.isRequired,
+  setPlaying: PropTypes.func.isRequired,
+  setTime: PropTypes.func.isRequired,
+  initialTime: PropTypes.number,
+  handleAction: PropTypes.func.isRequired,
+  time: PropTypes.number.isRequired,
+  setIsHalfWay: PropTypes.func.isRequired,
+  isFinished: PropTypes.bool.isRequired,
+  setIsFinished: PropTypes.func.isRequired,
+  isModifying: PropTypes.bool.isRequired,
 };
 
 export default TimerControls;

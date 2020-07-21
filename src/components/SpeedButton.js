@@ -46,4 +46,9 @@ SpeedButton.propTypes = {
   value: PropTypes.number,
 };
 
+SpeedButton.defaultProps = {
+  text: '',
+  value: 0,
+}
+
 export default SpeedButton;
