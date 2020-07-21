@@ -22,7 +22,7 @@ const TimerControls = ({
           handleAction();
           dispatch(setIsFinished(false));
         }}
-        className={`btn bg-black text-white block ml-3 ${
+        className={`btn bg-green-400 text-white block ml-3 ${
           time === 0 ? "opacity-50 pointer-events-none" : ""
         }`}
       >

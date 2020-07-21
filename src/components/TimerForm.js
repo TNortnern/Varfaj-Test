@@ -15,30 +15,31 @@ const TimerForm = () => {
   return (
     <form
       onSubmit={(e) => {
+        e.preventDefault();
+        if (isPlaying) return;
         if (number < 0 || !number) {
           // small validation
           alert("Time can only be positive.");
         }
-        e.preventDefault();
         const resolveNumber = Number(number * 60);
         dispatch(setIsFinished(false));
         dispatch(setIsHalfWay(false));
         dispatch(setTime(resolveNumber));
         dispatch(setInitialTime(resolveNumber));
       }}
-      className="flex items-center space-x-4"
+      className="flex flex-wrap items-center sm:space-x-4"
     >
       <input
         value={number}
         onChange={({ target }) => setNumber(target.value)}
         placeholder="Enter minutes"
-        className="input w-4/6"
+        className="input w-11/12 mx-auto sm:mx-0 mb-2 sm:mb-0 sm:w-4/6"
         type="number"
         min={0}
       />
       <button
         type="submit"
-        className={`btn-primary ${
+        className={`btn-primary w-11/12 sm:w-auto mx-auto sm:mx-0 ${
           isPlaying ? "opacity-50 pointer-events-none" : ""
         }`}
       >

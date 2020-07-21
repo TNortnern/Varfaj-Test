@@ -15,7 +15,7 @@ function App() {
       className="flex items-center justify-center h-screen w-screen"
     >
       <div>
-        <h1 className="text-3xl font-bold mb-4">
+        <h1 className="text-3xl font-bold mb-4 text-center sm:text-left">
           Welcome to the countdown timer.
         </h1>
         <TimerForm />

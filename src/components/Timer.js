@@ -16,6 +16,7 @@ import {
 } from "../slices/timerSlice";
 import TimerControls from "./TimerControls";
 import Message from "./Message";
+import TimeItem from "./TimeItem";
 
 const Timer = () => {
   const dispatch = useDispatch();
@@ -32,9 +33,9 @@ const Timer = () => {
   };
   const belowHandlers = () => {
     let classes;
-    const isBelow20 = time < 20 ? 'text-red-600' : '';
-    const isBelow11 = time < 11 ? 'blink-text' : '';
-    classes = `${isBelow11} ${isBelow20}`
+    const isBelow20 = time < 20 ? "text-red-600" : "";
+    const isBelow11 = time < 11 ? "blink-text" : "";
+    classes = `${isBelow11} ${isBelow20}`;
     if (isPlaying) return classes;
   };
   useEffect(() => {
@@ -81,15 +82,21 @@ const Timer = () => {
   const closeMessage = () => {
     dispatch(setIsHalfWay(false));
     dispatch(setIsFinished(false));
-  }
+  };
   return (
     <div>
-     <Message isFinished={isFinished} isHalfWay={isHalfWay} closeMessage={closeMessage} />
-      <h1
-        className={`text-5xl font-bold text-center my-2 text-timer-text ${belowHandlers()}`}
+      <Message
+        isFinished={isFinished}
+        isHalfWay={isHalfWay}
+        closeMessage={closeMessage}
+      />
+      <div
+        className={`text-5xl font-bold mt-2 mb-5 text-timer-text ${belowHandlers()} flex justify-center`}
       >
-        {handleMinutes()}:{handleSeconds()}
-      </h1>
+        <TimeItem time="Minutes" value={handleMinutes()} />
+        :
+        <TimeItem time="Seconds" value={handleSeconds()} />
+      </div>
       <TimerControls
         time={time}
         isPlaying={isPlaying}
