@@ -50,7 +50,7 @@ const Timer = () => {
           initialHalfTime = half;
         }
         if (time !== -1) dispatch(setTime(time--));
-        if (time === initialHalfTime) dispatch(setIsHalfWay(true));
+        if (time === (initialHalfTime - 1)) dispatch(setIsHalfWay(true));
         // when counter has reached 0
         if (time < 0) {
           clearInterval(countInterval);

@@ -19,11 +19,14 @@ const TimerControls = ({
     <div className="flex justify-center">
       <button
         onClick={() => {
+          if (isFinished) {
+            dispatch(setTime(initialTime));
+          }
           handleAction();
           dispatch(setIsFinished(false));
         }}
         className={`btn bg-green-400 text-white block ml-3 ${
-          time === 0 ? "opacity-50 pointer-events-none" : ""
+          time === 0 && !isFinished ? "opacity-50 pointer-events-none" : ""
         }`}
       >
         {isPlaying || isModifying ? "Pause" : "Play"}
