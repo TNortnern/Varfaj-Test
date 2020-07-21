@@ -6,7 +6,9 @@ Production Link: [https://varfaj-test-git-master.traynorthern.vercel.app/](https
 
 ## Small Validation:
 
-![validation](https://i.imgur.com/zU1vOAE.png)~~~~
+![validation](https://i.imgur.com/RH6mKBq.png)
+
+
 
 ## Counting down:
 
