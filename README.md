@@ -1,4 +1,4 @@
-Production Link: [https://varfaj-test-git-master.traynorthern.vercel.app/](https://varfaj-test-git-master.traynorthern.vercel.app/)
+Production Link: [https://varfaj-test-git-master.traynorthern.vercel.app/](https://varfaj-test.vercel.app/)
 
 ## Initial View:
 
@@ -7,8 +7,6 @@ Production Link: [https://varfaj-test-git-master.traynorthern.vercel.app/](https
 ## Small Validation:
 
 ![validation](https://i.imgur.com/RH6mKBq.png)
-
-
 
 ## Counting down:
 
